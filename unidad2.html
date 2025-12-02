@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unidad 2 - Tipos de Bases de Datos</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700;800&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="background-animation">
+    <div class="grid-overlay"></div>
+    <div class="floating-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+      <span class="shape shape-4"></span>
+    </div>
+  </div>
+
+  <!-- Contenido de la Unidad 2 (extraído del archivo original) -->
+  <section id="unidad2" class="hero-section">
+    <div class="hero-content">
+      <div class="unit-header">
+        <div class="unit-number">02</div>
+        <div class="unit-info">
+          <span class="unit-tag">Unidad 2</span>
+          <h2 class="unit-title">Tipos de Bases de Datos</h2>
+          <p class="unit-description">
+            Explora las bases de datos documentales y objeto-relacionales, 
+            entendiendo sus características y casos de uso.
+          </p>
+        </div>
+      </div>
+      <!-- Tema 2.1: BD Documentales -->
+      <div class="content-block">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">📄</span>
+            Bases de Datos Documentales
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card info">
+            <div class="definition-header">
+              <span class="definition-icon">📚</span>
+              <span class="definition-label">Concepto</span>
+            </div>
+            <p>Las <strong>bases de datos documentales</strong> almacenan información en diferentes formatos <strong>sin una estructura fija definida</strong>. A diferencia de las relacionales, asignan un identificador único a cada documento para consultas rápidas.</p>
+          </div>
+          <div class="db-types-grid">
+            <div class="db-type-card">
+              <div class="db-type-header">
+                <span class="db-icon">📖</span>
+                <h4>Según el Contenido</h4>
+              </div>
+              <div class="db-type-content">
+                <div class="db-subtype">
+                  <h5>Texto Completo</h5>
+                  <p>Contienen textos íntegros de documentos (libros, artículos, tesis).</p>
+                  <span class="example">Ej: Bases de datos académicas</span>
+                </div>
+                <div class="db-subtype">
+                  <h5>Referenciales</h5>
+                  <p>Solo referencias bibliográficas, sin el documento completo.</p>
+                  <span class="example">Ej: Catálogos de biblioteca</span>
+                </div>
+              </div>
+            </div>
+            <div class="db-type-card">
+              <div class="db-type-header">
+                <span class="db-icon">🎯</span>
+                <h4>Según la Cobertura</h4>
+              </div>
+              <div class="db-type-content">
+                <div class="db-subtype">
+                  <h5>Multidisciplinares</h5>
+                  <p>Abarcan múltiples áreas del conocimiento.</p>
+                  <span class="example">Ej: Google Scholar</span>
+                </div>
+                <div class="db-subtype">
+                  <h5>Especializadas</h5>
+                  <p>Enfocadas en un área específica.</p>
+                  <span class="example">Ej: PubMed (medicina)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Caso de Uso: MongoDB -->
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">🍃</span>
+              <div class="case-info">
+                <h4>Caso de Uso: MongoDB (Base de Datos Documental)</h4>
+                <p class="case-context">Gestión de un catálogo de productos con características variables.</p>
+              </div>
+            </div>
+            <div class="code-example">
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="lang-badge">MongoDB</span>
+                  <button class="copy-btn" data-code="mongo1">📋 Copiar</button>
+                </div>
+                <pre><code id="mongo1"><span class="comment">// Documento de producto - Laptop</span>
+{
+    <span class="string">"_id"</span>: <span class="function">ObjectId</span>(<span class="string">"507f1f77bcf86cd799439011"</span>),
+    <span class="string">"nombre"</span>: <span class="string">"MacBook Pro 14"</span>,
+    <span class="string">"categoria"</span>: <span class="string">"Laptops"</span>,
+    <span class="string">"precio"</span>: <span class="number">1999.99</span>,
+    <span class="string">"especificaciones"</span>: {
+        <span class="string">"procesador"</span>: <span class="string">"Apple M3 Pro"</span>,
+        <span class="string">"ram"</span>: <span class="string">"18GB"</span>,
+        <span class="string">"almacenamiento"</span>: <span class="string">"512GB SSD"</span>,
+        <span class="string">"pantalla"</span>: <span class="string">"14.2 pulgadas Liquid Retina XDR"</span>
+    },
+    <span class="string">"colores"</span>: [<span class="string">"Space Gray"</span>, <span class="string">"Silver"</span>],
+    <span class="string">"enStock"</span>: <span class="keyword">true</span>,
+    <span class="string">"fechaIngreso"</span>: <span class="function">ISODate</span>(<span class="string">"2024-01-15"</span>)
+}
+<span class="comment">// Consulta: Productos con más de 16GB RAM y precio menor a $2000</span>
+db.productos.<span class="function">find</span>({
+    <span class="string">"especificaciones.ram"</span>: { <span class="variable">$gte</span>: <span class="string">"16GB"</span> },
+    <span class="string">"precio"</span>: { <span class="variable">$lt</span>: <span class="number">2000</span> }
+});</code></pre>
+              </div>
+            </div>
+            <div class="comparison-note">
+              <h5>💡 Ventaja clave</h5>
+              <p>Nota cómo cada producto puede tener especificaciones diferentes sin necesidad de modificar el esquema de la base de datos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tema 2.2: BD Objeto-Relacionales -->
+      <div class="content-block highlight">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">🔗</span>
+            Bases de Datos Objeto-Relacionales
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card">
+            <div class="definition-header">
+              <span class="definition-icon">🎯</span>
+              <span class="definition-label">Definición</span>
+            </div>
+            <p>Una <strong>Base de Datos Objeto-Relacional (BDOR)</strong> es una evolución del modelo relacional que incorpora conceptos de la programación orientada a objetos. Permite:</p>
+            <ul class="feature-list">
+              <li>Crear tipos de datos personalizados</li>
+              <li>Definir métodos para esos tipos</li>
+              <li>Utilizar herencia de tipos</li>
+              <li>Mayor flexibilidad manteniendo compatibilidad SQL</li>
+            </ul>
+          </div>
+          <div class="evolution-diagram">
+            <h4>Evolución de los Modelos de BD</h4>
+            <div class="evolution-flow">
+              <div class="evo-step">
+                <div class="evo-icon">📊</div>
+                <span class="evo-name">Relacional</span>
+                <small>Tablas + SQL</small>
+              </div>
+              <div class="evo-arrow">+</div>
+              <div class="evo-step">
+                <div class="evo-icon">🎯</div>
+                <span class="evo-name">POO</span>
+                <small>Objetos + Métodos</small>
+              </div>
+              <div class="evo-arrow">=</div>
+              <div class="evo-step highlight">
+                <div class="evo-icon">🔗</div>
+                <span class="evo-name">Objeto-Relacional</span>
+                <small>Lo mejor de ambos</small>
+              </div>
+            </div>
+          </div>
+          <!-- Caso de Uso: Tipos Personalizados -->
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">🏗️</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Tipos de Datos Personalizados</h4>
+                <p class="case-context">Crear un tipo de dato compuesto para manejar direcciones de clientes.</p>
+              </div>
+            </div>
+            <div class="code-example">
+              <div class="code-tabs">
+                <button class="tab-btn active" data-tab="type-create">Crear Tipo</button>
+                <button class="tab-btn" data-tab="type-use">Usar Tipo</button>
+                <button class="tab-btn" data-tab="type-query">Consultar</button>
+              </div>
+              <div class="code-panels">
+                <div class="code-panel active" id="type-create">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">PostgreSQL</span>
+                    </div>
+                    <pre><code><span class="comment">-- Crear un tipo de dato compuesto para direcciones</span>
+<span class="keyword">CREATE TYPE</span> <span class="type">tipo_direccion</span> <span class="keyword">AS</span> (
+    calle <span class="type">VARCHAR</span>(<span class="number">100</span>),
+    ciudad <span class="type">VARCHAR</span>(<span class="number">50</span>),
+    codigo_postal <span class="type">VARCHAR</span>(<span class="number">10</span>),
+    pais <span class="type">VARCHAR</span>(<span class="number">50</span>)
+);
+<span class="comment">-- Crear tabla usando el tipo personalizado</span>
+<span class="keyword">CREATE TABLE</span> Clientes (
+    cliente_id <span class="type">SERIAL</span> <span class="keyword">PRIMARY KEY</span>,
+    nombre <span class="type">VARCHAR</span>(<span class="number">100</span>),
+    email <span class="type">VARCHAR</span>(<span class="number">100</span>),
+    direccion_envio <span class="type">tipo_direccion</span>,
+    direccion_facturacion <span class="type">tipo_direccion</span>
+);</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="type-use">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Insertar datos</span>
+                    </div>
+                    <pre><code><span class="comment">-- Insertar cliente con direcciones compuestas</span>
+<span class="keyword">INSERT INTO</span> Clientes (nombre, email, direccion_envio, direccion_facturacion)
+<span class="keyword">VALUES</span> (
+    <span class="string">'María García'</span>,
+    <span class="string">'maria@email.com'</span>,
+    <span class="function">ROW</span>(<span class="string">'Calle 123'</span>, <span class="string">'Medellín'</span>, <span class="string">'050001'</span>, <span class="string">'Colombia'</span>),
+    <span class="function">ROW</span>(<span class="string">'Carrera 45'</span>, <span class="string">'Bogotá'</span>, <span class="string">'110111"</span>, <span class="string">'Colombia'</span>)
+);</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="type-query">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Consultar</span>
+                    </div>
+                    <pre><code><span class="comment">-- Acceder a componentes del tipo compuesto</span>
+<span class="keyword">SELECT</span> 
+    nombre,
+    (direccion_envio).ciudad <span class="keyword">AS</span> ciudad_envio,
+    (direccion_facturacion).ciudad <span class="keyword">AS</span> ciudad_factura
+<span class="keyword">FROM</span> Clientes
+<span class="keyword">WHERE</span> (direccion_envio).pais = <span class="string">'Colombia'</span>;</code></pre>
+                  </div>
+                  <div class="result-display">
+                    <h5>📊 Resultado</h5>
+                    <div class="result-table">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>nombre</th>
+                            <th>ciudad_envio</th>
+                            <th>ciudad_factura</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>María García</td>
+                            <td>Medellín</td>
+                            <td>Bogotá</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Ejercicio Unidad 2 -->
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <span class="exercise-icon">✍️</span>
+          <h4>Taller de Entrenamiento - Unidad 2</h4>
+        </div>
+        <div class="exercise-content">
+          <div class="exercise-scenario">
+            <h5>📋 Escenario</h5>
+            <p>Diseñe un modelo conceptual (diagrama de clases UML) para un sistema de gestión de partidos de fútbol que incluya:</p>
+          </div>
+          <div class="exercise-tasks">
+            <div class="task">
+              <span class="task-number">1</span>
+              <p>Equipos con nombre y categoría</p>
+            </div>
+            <div class="task">
+              <span class="task-number">2</span>
+              <p>Jugadores con documento, nombre, dirección, teléfonos, posición y goles</p>
+            </div>
+            <div class="task">
+              <span class="task-number">3</span>
+              <p>Árbitros con documento, nombre, partidos arbitrados y antigüedad</p>
+            </div>
+            <div class="task">
+              <span class="task-number">4</span>
+              <p>Partidos con fecha, hora, torneo, resultado y estadio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components-loader.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

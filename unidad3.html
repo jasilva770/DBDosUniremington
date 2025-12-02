@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unidad 3 - Optimización y Minería</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700;800&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="background-animation">
+    <div class="grid-overlay"></div>
+    <div class="floating-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+      <span class="shape shape-4"></span>
+    </div>
+  </div>
+
+  <!-- Contenido de la Unidad 3 (extraído del archivo original) -->
+  <section id="unidad3" class="hero-section">
+    <div class="hero-content">
+      <div class="unit-header">
+        <div class="unit-number">03</div>
+        <div class="unit-info">
+          <span class="unit-tag">Unidad 3</span>
+          <h2 class="unit-title">Optimización de Consultas y Minería de Datos</h2>
+          <p class="unit-description">
+            Aprende a mejorar el rendimiento de tus consultas y descubre 
+            patrones ocultos en tus datos.
+          </p>
+        </div>
+      </div>
+      <!-- Tema 3.1: Optimización -->
+      <div class="content-block">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">⚡</span>
+            Optimización de Consultas
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card success">
+            <div class="definition-header">
+              <span class="definition-icon">🎯</span>
+              <span class="definition-label">¿Qué es optimizar?</span>
+            </div>
+            <p>La <strong>optimización de consultas</strong> es el proceso de modificar una consulta para mejorar su tiempo de ejecución y uso eficiente de recursos. El objetivo es obtener los mismos resultados en el menor tiempo posible.</p>
+          </div>
+          <div class="optimization-tips">
+            <h4>🚀 Técnicas de Optimización</h4>
+            <div class="tips-grid">
+              <div class="tip-card">
+                <div class="tip-icon">📊</div>
+                <h5>Usar Índices</h5>
+                <p>Crear índices en columnas frecuentemente usadas en WHERE, JOIN y ORDER BY.</p>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon">🎯</div>
+                <h5>Seleccionar Solo lo Necesario</h5>
+                <p>Evitar SELECT *, especificar solo las columnas requeridas.</p>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon">🔍</div>
+                <h5>Usar EXPLAIN</h5>
+                <p>Analizar el plan de ejecución para identificar cuellos de botella.</p>
+              </div>
+              <div class="tip-card">
+                <div class="tip-icon">📉</div>
+                <h5>Limitar Resultados</h5>
+                <p>Usar TOP, LIMIT o paginación para grandes conjuntos de datos.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Caso de Uso: Optimización -->
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">🔧</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Optimización de Consulta</h4>
+                <p class="case-context">Mejorar una consulta lenta en un sistema de ventas.</p>
+              </div>
+            </div>
+            <div class="code-example">
+              <div class="code-tabs">
+                <button class="tab-btn active" data-tab="opt-before">❌ Antes (Lenta)</button>
+                <button class="tab-btn" data-tab="opt-after">✅ Después (Optimizada)</button>
+                <button class="tab-btn" data-tab="opt-index">📊 Índices</button>
+              </div>
+              <div class="code-panels">
+                <div class="code-panel active" id="opt-before">
+                  <div class="code-block error">
+                    <div class="code-header">
+                      <span class="lang-badge">Consulta NO optimizada</span>
+                      <span class="performance-badge bad">⏱️ 15.2s</span>
+                    </div>
+                    <pre><code><span class="comment">-- ❌ Problemas con esta consulta:</span>
+<span class="comment">-- 1. SELECT * trae columnas innecesarias</span>
+<span class="comment">-- 2. Función en WHERE impide uso de índice</span>
+<span class="comment">-- 3. Sin índices en columnas de JOIN</span>
+<span class="keyword">SELECT</span> *
+<span class="keyword">FROM</span> Ventas v
+<span class="keyword">JOIN</span> Clientes c <span class="keyword">ON</span> v.ClienteID = c.ClienteID
+<span class="keyword">JOIN</span> Productos p <span class="keyword">ON</span> v.ProductoID = p.ProductoID
+<span class="keyword">WHERE</span> <span class="function">YEAR</span>(v.FechaVenta) = <span class="number">2024</span>
+  <span class="keyword">AND</span> <span class="function">MONTH</span>(v.FechaVenta) = <span class="number">1</span>
+<span class="keyword">ORDER BY</span> v.FechaVenta <span class="keyword">DESC</span>;</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="opt-after">
+                  <div class="code-block success">
+                    <div class="code-header">
+                      <span class="lang-badge">Consulta OPTIMIZADA</span>
+                      <span class="performance-badge good">⏱️ 0.3s</span>
+                    </div>
+                    <pre><code><span class="comment">-- ✅ Mejoras aplicadas:</span>
+<span class="comment">-- 1. Solo columnas necesarias</span>
+<span class="comment">-- 2. Rango de fechas permite usar índice</span>
+<span class="comment">-- 3. Índices creados en columnas clave</span>
+<span class="keyword">SELECT</span> 
+    v.VentaID,
+    c.Nombre <span class="keyword">AS</span> Cliente,
+    p.NombreProducto,
+    v.Cantidad,
+    v.Total,
+    v.FechaVenta
+<span class="keyword">FROM</span> Ventas v
+<span class="keyword">INNER JOIN</span> Clientes c <span class="keyword">ON</span> v.ClienteID = c.ClienteID
+<span class="keyword">INNER JOIN</span> Productos p <span class="keyword">ON</span> v.ProductoID = p.ProductoID
+<span class="keyword">WHERE</span> v.FechaVenta >= <span class="string">'2024-01-01'</span>
+  <span class="keyword">AND</span> v.FechaVenta < <span class="string">'2024-02-01'</span>
+<span class="keyword">ORDER BY</span> v.FechaVenta <span class="keyword">DESC</span>;</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="opt-index">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Crear Índices</span>
+                    </div>
+                    <pre><code><span class="comment">-- Índice en fecha de venta (más consultada)</span>
+<span class="keyword">CREATE INDEX</span> IX_Ventas_Fecha 
+<span class="keyword">ON</span> Ventas(FechaVenta);
+<span class="comment">-- Índice compuesto para JOINs frecuentes</span>
+<span class="keyword">CREATE INDEX</span> IX_Ventas_Cliente_Producto 
+<span class="keyword">ON</span> Ventas(ClienteID, ProductoID);
+<span class="comment">-- Ver plan de ejecución</span>
+<span class="keyword">EXPLAIN ANALYZE</span>
+<span class="keyword">SELECT</span> ... <span class="comment">-- tu consulta aquí</span></code></pre>
+                  </div>
+                  <div class="result-display">
+                    <h5>📈 Mejora de Rendimiento</h5>
+                    <div class="performance-comparison">
+                      <div class="perf-item bad">
+                        <span class="label">Antes</span>
+                        <span class="value">15.2 segundos</span>
+                        <span class="bar" style="width: 100%"></span>
+                      </div>
+                      <div class="perf-item good">
+                        <span class="label">Después</span>
+                        <span class="value">0.3 segundos</span>
+                        <span class="bar" style="width: 2%"></span>
+                      </div>
+                    </div>
+                    <p class="improvement">🎉 <strong>98% de mejora</strong> en tiempo de ejecución</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tema 3.2: Minería de Datos -->
+      <div class="content-block highlight">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">💎</span>
+            Minería de Datos
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card">
+            <div class="definition-header">
+              <span class="definition-icon">🔍</span>
+              <span class="definition-label">Definición</span>
+            </div>
+            <p>La <strong>minería de datos</strong> es el proceso de hallar anomalías, patrones y correlaciones en grandes conjuntos de datos para predecir resultados. Utiliza técnicas de estadística, inteligencia artificial y aprendizaje automático.</p>
+          </div>
+          <div class="mining-process">
+            <h4>📊 Proceso de Minería de Datos</h4>
+            <div class="process-flow">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h5>Selección</h5>
+                  <p>Identificar fuentes de datos relevantes</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h5>Pre-procesamiento</h5>
+                  <p>Limpiar y preparar los datos</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h5>Transformación</h5>
+                  <p>Normalizar y reducir dimensiones</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h5>Minería</h5>
+                  <p>Aplicar algoritmos de análisis</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <h5>Evaluación</h5>
+                  <p>Interpretar y validar resultados</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modeling-types">
+            <h4>🎯 Tipos de Modelado</h4>
+            <div class="model-grid">
+              <div class="model-card descriptive">
+                <div class="model-header">
+                  <span class="model-icon">📋</span>
+                  <h5>Modelado Descriptivo</h5>
+                </div>
+                <p>Descubre similitudes y agrupaciones en datos históricos.</p>
+                <ul>
+                  <li>Agrupación en clústeres</li>
+                  <li>Detección de anomalías</li>
+                  <li>Reglas de asociación</li>
+                </ul>
+              </div>
+              <div class="model-card predictive">
+                <div class="model-header">
+                  <span class="model-icon">🔮</span>
+                  <h5>Modelado Predictivo</h5>
+                </div>
+                <p>Clasifica eventos futuros y calcula resultados probables.</p>
+                <ul>
+                  <li>Regresión</li>
+                  <li>Redes neurales</li>
+                  <li>Árboles de decisión</li>
+                </ul>
+              </div>
+              <div class="model-card prescriptive">
+                <div class="model-header">
+                  <span class="model-icon">💡</span>
+                  <h5>Modelado Prescriptivo</h5>
+                </div>
+                <p>Recomienda acciones basadas en análisis de restricciones.</p>
+                <ul>
+                  <li>Reglas qué pasaría si</li>
+                  <li>Optimización de marketing</li>
+                  <li>Simulación de escenarios</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Caso de Uso: Análisis de Ventas -->
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">📈</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Análisis de Patrones de Compra</h4>
+                <p class="case-context">Identificar productos que se compran juntos frecuentemente.</p>
+              </div>
+            </div>
+            <div class="code-example">
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="lang-badge">SQL - Análisis de Asociación</span>
+                </div>
+                <pre><code><span class="comment">-- Encontrar productos comprados juntos frecuentemente</span>
+<span class="comment">-- (Market Basket Analysis)</span>
+<span class="keyword">WITH</span> ProductosPorVenta <span class="keyword">AS</span> (
+    <span class="keyword">SELECT</span> 
+        v.VentaID,
+        p1.NombreProducto <span class="keyword">AS</span> Producto1,
+        p2.NombreProducto <span class="keyword">AS</span> Producto2
+    <span class="keyword">FROM</span> DetalleVenta dv1
+    <span class="keyword">JOIN</span> DetalleVenta dv2 
+        <span class="keyword">ON</span> dv1.VentaID = dv2.VentaID 
+        <span class="keyword">AND</span> dv1.ProductoID < dv2.ProductoID
+    <span class="keyword">JOIN</span> Productos p1 <span class="keyword">ON</span> dv1.ProductoID = p1.ProductoID
+    <span class="keyword">JOIN</span> Productos p2 <span class="keyword">ON</span> dv2.ProductoID = p2.ProductoID
+    <span class="keyword">JOIN</span> Ventas v <span class="keyword">ON</span> dv1.VentaID = v.VentaID
+    <span class="keyword">WHERE</span> v.FechaVenta >= <span class="function">DATEADD</span>(<span class="keyword">month</span>, <span class="number">-3</span>, <span class="function">GETDATE</span>())
+)
+<span class="keyword">SELECT</span> 
+    Producto1,
+    Producto2,
+    <span class="function">COUNT</span>(*) <span class="keyword">AS</span> VecesJuntos,
+    <span class="function">CAST</span>(<span class="function">COUNT</span>(*) * <span class="number">100.0</span> / 
+        (<span class="keyword">SELECT</span> <span class="function">COUNT</span>(<span class="keyword">DISTINCT</span> VentaID) <span class="keyword">FROM</span> Ventas) 
+        <span class="keyword">AS</span> <span class="type">DECIMAL</span>(<span class="number">5</span>,<span class="number">2</span>)) <span class="keyword">AS</span> PorcentajeVentas
+<span class="keyword">FROM</span> ProductosPorVenta
+<span class="keyword">GROUP BY</span> Producto1, Producto2
+<span class="keyword">HAVING</span> <span class="function">COUNT</span>(*) >= <span class="number">10</span>
+<span class="keyword">ORDER BY</span> VecesJuntos <span class="keyword">DESC</span>;</code></pre>
+              </div>
+              <div class="result-display">
+                <h5>📊 Resultados del Análisis</h5>
+                <div class="result-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Producto 1</th>
+                        <th>Producto 2</th>
+                        <th>Veces Juntos</th>
+                        <th>% Ventas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Laptop</td>
+                        <td>Mouse Inalámbrico</td>
+                        <td>245</td>
+                        <td>32.5%</td>
+                      </tr>
+                      <tr>
+                        <td>Smartphone</td>
+                        <td>Funda Protectora</td>
+                        <td>189</td>
+                        <td>25.1%</td>
+                      </tr>
+                      <tr>
+                        <td>Monitor</td>
+                        <td>Cable HDMI</td>
+                        <td>156</td>
+                        <td>20.7%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="insight-box">
+                  <h6>💡 Insight de Negocio</h6>
+                  <p>Crear bundles de "Laptop + Mouse" puede aumentar las ventas cruzadas en un 15-20%.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Ejercicio Unidad 3 -->
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <span class="exercise-icon">✍️</span>
+          <h4>Taller de Entrenamiento - Unidad 3</h4>
+        </div>
+        <div class="exercise-content">
+          <div class="exercise-scenario">
+            <h5>📋 Escenario: Asesorías Jurídicas M&R</h5>
+            <p>Implemente una propuesta de minería de datos que ayude en:</p>
+          </div>
+          <div class="exercise-tasks">
+            <div class="task">
+              <span class="task-number">1</span>
+              <p>Reducir las bajas de clientes actuales en un 5%</p>
+            </div>
+            <div class="task">
+              <span class="task-number">2</span>
+              <p>Aumentar las contrataciones de nuevos clientes en un 8%</p>
+            </div>
+            <div class="task">
+              <span class="task-number">3</span>
+              <p>Predecir qué clientes abandonarán en los próximos 6 meses</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components-loader.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

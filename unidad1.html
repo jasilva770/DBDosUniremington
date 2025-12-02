@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unidad 1 - Lenguaje Procedimental</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700;800&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="background-animation">
+    <div class="grid-overlay"></div>
+    <div class="floating-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+      <span class="shape shape-4"></span>
+    </div>
+  </div>
+
+  <!-- [ Todo el contenido de la Unidad 1 desde tu archivo original ] -->
+  <!--<section id="unidad1" class="unit-section">
+    <div class="section-container">-->
+  <section id="unidad1" class="hero-section">
+    <div class="hero-content">
+      <div class="unit-header">
+        <div class="unit-number">01</div>
+        <div class="unit-info">
+          <span class="unit-tag">Unidad 1</span>
+          <h2 class="unit-title">Lenguaje Procedimental</h2>
+          <p class="unit-description">
+            Aprende a crear procedimientos, funciones y triggers para automatizar 
+            y optimizar las operaciones en tu base de datos.
+          </p>
+        </div>
+      </div>
+      <!-- Tema 1.1 a Ejercicio Unidad 1 -->
+      <!-- (Contenido completo extraído del archivo original) -->
+      <div class="content-block">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">📖</span>
+            ¿Qué es un Lenguaje Procedimental?
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="theory-box">
+            <p>En un <strong>lenguaje procedimental</strong>, el usuario da instrucciones al sistema para que realice una serie de procedimientos u operaciones en la base de datos para calcular un resultado final.</p>
+            <p>Las instrucciones son de dos tipos:</p>
+            <ul class="styled-list">
+              <li><strong>Elementales:</strong> Ofrecidas de forma nativa por la sintaxis del lenguaje</li>
+              <li><strong>Programadas:</strong> Definidas por el programador</li>
+            </ul>
+          </div>
+          <div class="diagram-container">
+            <h4>Arquitectura del Lenguaje Procedimental</h4>
+            <div class="architecture-diagram">
+              <div class="diagram-box main">
+                <span>Lenguaje Procedimental</span>
+              </div>
+              <div class="diagram-branches">
+                <div class="diagram-box secondary">
+                  <span>DDL</span>
+                  <small>Definición de Datos</small>
+                  <div class="sub-items">
+                    <span>CREATE</span>
+                    <span>ALTER</span>
+                    <span>DROP</span>
+                  </div>
+                </div>
+                <div class="diagram-box secondary">
+                  <span>DML</span>
+                  <small>Manipulación de Datos</small>
+                  <div class="sub-items">
+                    <span>SELECT</span>
+                    <span>INSERT</span>
+                    <span>UPDATE</span>
+                    <span>DELETE</span>
+                  </div>
+                </div>
+                <div class="diagram-box secondary">
+                  <span>DCL</span>
+                  <small>Control de Datos</small>
+                  <div class="sub-items">
+                    <span>GRANT</span>
+                    <span>REVOKE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-block highlight">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">⚙️</span>
+            Procedimientos Almacenados
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card">
+            <div class="definition-header">
+              <span class="definition-icon">💡</span>
+              <span class="definition-label">Definición</span>
+            </div>
+            <p>Un <strong>procedimiento almacenado</strong> es un grupo de una o varias instrucciones SQL que se almacenan en la base de datos y pueden ser ejecutados posteriormente. Funcionan como funciones que pueden:</p>
+            <ul class="feature-list">
+              <li>Aceptar parámetros de entrada</li>
+              <li>Devolver valores de salida</li>
+              <li>Contener instrucciones de programación</li>
+              <li>Llamar a otros procedimientos</li>
+              <li>Devolver valores de estado</li>
+            </ul>
+          </div>
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">🏪</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Sistema de Tienda de Tecnología</h4>
+                <p class="case-context">Una tienda de productos tecnológicos necesita automatizar la gestión de inventario y ventas.</p>
+              </div>
+            </div>
+            <div class="case-scenario">
+              <h5>📋 Escenario</h5>
+              <p>El administrador necesita registrar nuevas ventas y actualizar automáticamente el stock de productos, verificando que haya suficiente inventario antes de procesar la venta.</p>
+            </div>
+            <div class="code-example">
+              <div class="code-tabs">
+                <button class="tab-btn active" data-tab="create-proc">Crear Procedimiento</button>
+                <button class="tab-btn" data-tab="exec-proc">Ejecutar</button>
+                <button class="tab-btn" data-tab="result-proc">Resultado</button>
+              </div>
+              <div class="code-panels">
+                <div class="code-panel active" id="create-proc">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">SQL Server</span>
+                      <button class="copy-btn" data-code="proc1">📋 Copiar</button>
+                    </div>
+                    <pre><code id="proc1"><span class="comment">-- Procedimiento para registrar una venta</span>
+<span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="function">sp_RegistrarVenta</span>
+    <span class="variable">@ProductoID</span> <span class="type">INT</span>,
+    <span class="variable">@ClienteID</span> <span class="type">INT</span>,
+    <span class="variable">@Cantidad</span> <span class="type">INT</span>,
+    <span class="variable">@Mensaje</span> <span class="type">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">OUTPUT</span>
+<span class="keyword">AS</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">DECLARE</span> <span class="variable">@StockActual</span> <span class="type">INT</span>;
+    <span class="keyword">DECLARE</span> <span class="variable">@PrecioUnitario</span> <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>);
+    <span class="comment">-- Verificar stock disponible</span>
+    <span class="keyword">SELECT</span> <span class="variable">@StockActual</span> = Stock, 
+           <span class="variable">@PrecioUnitario</span> = Precio
+    <span class="keyword">FROM</span> Productos
+    <span class="keyword">WHERE</span> ProductoID = <span class="variable">@ProductoID</span>;
+    <span class="keyword">IF</span> <span class="variable">@StockActual</span> >= <span class="variable">@Cantidad</span>
+    <span class="keyword">BEGIN</span>
+        <span class="comment">-- Registrar la venta</span>
+        <span class="keyword">INSERT INTO</span> Ventas (ProductoID, ClienteID, Cantidad, Total, Fecha)
+        <span class="keyword">VALUES</span> (<span class="variable">@ProductoID</span>, <span class="variable">@ClienteID</span>, <span class="variable">@Cantidad</span>, 
+                <span class="variable">@Cantidad</span> * <span class="variable">@PrecioUnitario</span>, <span class="function">GETDATE</span>());
+        <span class="comment">-- Actualizar inventario</span>
+        <span class="keyword">UPDATE</span> Productos
+        <span class="keyword">SET</span> Stock = Stock - <span class="variable">@Cantidad</span>
+        <span class="keyword">WHERE</span> ProductoID = <span class="variable">@ProductoID</span>;
+        <span class="keyword">SET</span> <span class="variable">@Mensaje</span> = <span class="string">'Venta registrada exitosamente'</span>;
+    <span class="keyword">END</span>
+    <span class="keyword">ELSE</span>
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">SET</span> <span class="variable">@Mensaje</span> = <span class="string">'Error: Stock insuficiente'</span>;
+    <span class="keyword">END</span>
+<span class="keyword">END</span>;</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="exec-proc">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Ejecución</span>
+                      <button class="copy-btn" data-code="exec1">📋 Copiar</button>
+                    </div>
+                    <pre><code id="exec1"><span class="comment">-- Ejecutar el procedimiento</span>
+<span class="keyword">DECLARE</span> <span class="variable">@ResultadoMsg</span> <span class="type">VARCHAR</span>(<span class="number">200</span>);
+<span class="keyword">EXEC</span> <span class="function">sp_RegistrarVenta</span> 
+    <span class="variable">@ProductoID</span> = <span class="number">1</span>,
+    <span class="variable">@ClienteID</span> = <span class="number">100</span>,
+    <span class="variable">@Cantidad</span> = <span class="number">5</span>,
+    <span class="variable">@Mensaje</span> = <span class="variable">@ResultadoMsg</span> <span class="keyword">OUTPUT</span>;
+<span class="keyword">SELECT</span> <span class="variable">@ResultadoMsg</span> <span class="keyword">AS</span> Resultado;</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="result-proc">
+                  <div class="result-display">
+                    <h5>📊 Resultado de la Ejecución</h5>
+                    <div class="result-table">
+                      <table>
+                        <thead>
+                          <tr><th>Resultado</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td class="success">Venta registrada exitosamente</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="result-explanation">
+                      <p><strong>¿Qué ocurrió?</strong></p>
+                      <ol>
+                        <li>Se verificó que hubiera stock suficiente</li>
+                        <li>Se insertó el registro en la tabla Ventas</li>
+                        <li>Se actualizó el stock en la tabla Productos</li>
+                        <li>Se devolvió un mensaje de confirmación</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ... resto del contenido de Unidad 1 (temas 1.3, 1.4, ejercicio) ... -->
+      <!-- [Se incluye todo el contenido restante tal cual del archivo original] -->
+      <div class="content-block">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">🔧</span>
+            Funciones en SQL
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <h4>📦 Funciones Agregadas</h4>
+              <p>Devuelven un solo valor calculado con los valores de una columna:</p>
+              <div class="function-list">
+                <div class="function-item">
+                  <code>AVG()</code>
+                  <span>Media de valores numéricos</span>
+                </div>
+                <div class="function-item">
+                  <code>COUNT()</code>
+                  <span>Número de filas</span>
+                </div>
+                <div class="function-item">
+                  <code>MAX()</code>
+                  <span>Valor máximo</span>
+                </div>
+                <div class="function-item">
+                  <code>MIN()</code>
+                  <span>Valor mínimo</span>
+                </div>
+                <div class="function-item">
+                  <code>SUM()</code>
+                  <span>Suma de valores</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-card">
+              <h4>🔤 Funciones Escalares</h4>
+              <p>Devuelven un solo valor basándose en el valor de entrada:</p>
+              <div class="function-list">
+                <div class="function-item">
+                  <code>UPPER()</code>
+                  <span>Convierte a mayúsculas</span>
+                </div>
+                <div class="function-item">
+                  <code>LOWER()</code>
+                  <span>Convierte a minúsculas</span>
+                </div>
+                <div class="function-item">
+                  <code>LEN()</code>
+                  <span>Longitud del texto</span>
+                </div>
+                <div class="function-item">
+                  <code>GETDATE()</code>
+                  <span>Fecha y hora actual</span>
+                </div>
+                <div class="function-item">
+                  <code>FORMAT()</code>
+                  <span>Formatea valores</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">💰</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Cálculo de Descuentos</h4>
+                <p class="case-context">Crear una función que calcule el descuento según el monto de compra.</p>
+              </div>
+            </div>
+            <div class="code-example">
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="lang-badge">Función SQL</span>
+                  <button class="copy-btn" data-code="func1">📋 Copiar</button>
+                </div>
+                <pre><code id="func1"><span class="comment">-- Función para calcular descuento según monto</span>
+<span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> <span class="function">fn_CalcularDescuento</span>
+(
+    <span class="variable">@MontoCompra</span> <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>)
+)
+<span class="keyword">RETURNS</span> <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>)
+<span class="keyword">AS</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">DECLARE</span> <span class="variable">@Descuento</span> <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>);
+    <span class="keyword">SET</span> <span class="variable">@Descuento</span> = <span class="keyword">CASE</span>
+        <span class="keyword">WHEN</span> <span class="variable">@MontoCompra</span> >= <span class="number">1000</span> <span class="keyword">THEN</span> <span class="variable">@MontoCompra</span> * <span class="number">0.15</span>  <span class="comment">-- 15%</span>
+        <span class="keyword">WHEN</span> <span class="variable">@MontoCompra</span> >= <span class="number">500</span>  <span class="keyword">THEN</span> <span class="variable">@MontoCompra</span> * <span class="number">0.10</span>  <span class="comment">-- 10%</span>
+        <span class="keyword">WHEN</span> <span class="variable">@MontoCompra</span> >= <span class="number">200</span>  <span class="keyword">THEN</span> <span class="variable">@MontoCompra</span> * <span class="number">0.05</span>  <span class="comment">-- 5%</span>
+        <span class="keyword">ELSE</span> <span class="number">0</span>
+    <span class="keyword">END</span>;
+    <span class="keyword">RETURN</span> <span class="variable">@Descuento</span>;
+<span class="keyword">END</span>;
+<span class="comment">-- Uso de la función</span>
+<span class="keyword">SELECT</span> 
+    ClienteID,
+    Nombre,
+    TotalCompra,
+    <span class="function">dbo.fn_CalcularDescuento</span>(TotalCompra) <span class="keyword">AS</span> Descuento,
+    TotalCompra - <span class="function">dbo.fn_CalcularDescuento</span>(TotalCompra) <span class="keyword">AS</span> TotalFinal
+<span class="keyword">FROM</span> Clientes;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-block highlight">
+        <div class="content-header">
+          <h3 class="content-title">
+            <span class="content-icon">⚡</span>
+            Disparadores (Triggers)
+          </h3>
+        </div>
+        <div class="content-body">
+          <div class="definition-card warning">
+            <div class="definition-header">
+              <span class="definition-icon">🎯</span>
+              <span class="definition-label">¿Qué es un Trigger?</span>
+            </div>
+            <p>Un <strong>Trigger</strong> o Disparador es un programa almacenado que se ejecuta <strong>automáticamente</strong> cuando ocurre un evento específico en una tabla. Los eventos que pueden activar un trigger son:</p>
+            <div class="trigger-events">
+              <span class="event insert">INSERT</span>
+              <span class="event update">UPDATE</span>
+              <span class="event delete">DELETE</span>
+            </div>
+          </div>
+          <div class="trigger-diagram">
+            <div class="trigger-flow">
+              <div class="flow-step">
+                <div class="step-icon">📥</div>
+                <span>Operación DML</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="step-icon">🗄️</div>
+                <span>Base de Datos</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step trigger">
+                <div class="step-icon">⚡</div>
+                <span>TRIGGER</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <div class="step-icon">🎬</div>
+                <span>Acciones</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-study">
+            <div class="case-header">
+              <span class="case-icon">📝</span>
+              <div class="case-info">
+                <h4>Caso de Uso: Auditoría de Cambios</h4>
+                <p class="case-context">Registrar automáticamente cada modificación de precios en productos.</p>
+              </div>
+            </div>
+            <div class="case-scenario">
+              <h5>📋 Requerimiento</h5>
+              <p>Cada vez que se modifique el precio de un producto, el sistema debe guardar un registro histórico con el precio anterior, el nuevo precio y la fecha del cambio.</p>
+            </div>
+            <div class="code-example">
+              <div class="code-tabs">
+                <button class="tab-btn active" data-tab="trigger-table">Tabla Auditoría</button>
+                <button class="tab-btn" data-tab="trigger-create">Crear Trigger</button>
+                <button class="tab-btn" data-tab="trigger-test">Probar</button>
+              </div>
+              <div class="code-panels">
+                <div class="code-panel active" id="trigger-table">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Paso 1: Crear tabla de auditoría</span>
+                    </div>
+                    <pre><code><span class="comment">-- Tabla para almacenar el historial de cambios</span>
+<span class="keyword">CREATE TABLE</span> AuditoriaPrecio (
+    AuditoriaID <span class="type">INT</span> <span class="keyword">IDENTITY</span>(<span class="number">1</span>,<span class="number">1</span>) <span class="keyword">PRIMARY KEY</span>,
+    ProductoID <span class="type">INT</span>,
+    PrecioAnterior <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>),
+    PrecioNuevo <span class="type">DECIMAL</span>(<span class="number">10</span>,<span class="number">2</span>),
+    FechaCambio <span class="type">DATETIME</span> <span class="keyword">DEFAULT</span> <span class="function">GETDATE</span>(),
+    Usuario <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="function">SYSTEM_USER</span>
+);</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="trigger-create">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Paso 2: Crear Trigger</span>
+                    </div>
+                    <pre><code><span class="comment">-- Trigger que se ejecuta al actualizar precios</span>
+<span class="keyword">CREATE TRIGGER</span> <span class="function">trg_AuditarCambioPrecio</span>
+<span class="keyword">ON</span> Productos
+<span class="keyword">AFTER UPDATE</span>
+<span class="keyword">AS</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">SET NOCOUNT ON</span>;
+    <span class="comment">-- Solo auditar si cambió el precio</span>
+    <span class="keyword">IF</span> <span class="function">UPDATE</span>(Precio)
+    <span class="keyword">BEGIN</span>
+        <span class="keyword">INSERT INTO</span> AuditoriaPrecio 
+            (ProductoID, PrecioAnterior, PrecioNuevo)
+        <span class="keyword">SELECT</span> 
+            d.ProductoID,
+            d.Precio <span class="keyword">AS</span> PrecioAnterior,
+            i.Precio <span class="keyword">AS</span> PrecioNuevo
+        <span class="keyword">FROM</span> deleted d
+        <span class="keyword">INNER JOIN</span> inserted i 
+            <span class="keyword">ON</span> d.ProductoID = i.ProductoID
+        <span class="keyword">WHERE</span> d.Precio <> i.Precio;
+    <span class="keyword">END</span>
+<span class="keyword">END</span>;</code></pre>
+                  </div>
+                </div>
+                <div class="code-panel" id="trigger-test">
+                  <div class="code-block">
+                    <div class="code-header">
+                      <span class="lang-badge">Paso 3: Probar el Trigger</span>
+                    </div>
+                    <pre><code><span class="comment">-- Actualizar el precio de un producto</span>
+<span class="keyword">UPDATE</span> Productos
+<span class="keyword">SET</span> Precio = <span class="number">899.99</span>
+<span class="keyword">WHERE</span> ProductoID = <span class="number">1</span>;
+<span class="comment">-- Verificar el registro de auditoría</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> AuditoriaPrecio
+<span class="keyword">ORDER BY</span> FechaCambio <span class="keyword">DESC</span>;</code></pre>
+                  </div>
+                  <div class="result-display">
+                    <h5>📊 Resultado en tabla AuditoriaPrecio</h5>
+                    <div class="result-table">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>ProductoID</th>
+                            <th>Anterior</th>
+                            <th>Nuevo</th>
+                            <th>Fecha</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>$799.99</td>
+                            <td>$899.99</td>
+                            <td>2024-01-15 10:30:45</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exercise-block">
+        <div class="exercise-header">
+          <span class="exercise-icon">✍️</span>
+          <h4>Taller de Entrenamiento - Unidad 1</h4>
+        </div>
+        <div class="exercise-content">
+          <div class="exercise-scenario">
+            <h5>📋 Escenario</h5>
+            <p>Usted ha sido contratado para diseñar una base de datos para una tienda de productos de tecnología que presta servicios de mantenimiento. Implemente:</p>
+          </div>
+          <div class="exercise-tasks">
+            <div class="task">
+              <span class="task-number">1</span>
+              <p>Un procedimiento que muestre el producto más vendido del mes.</p>
+            </div>
+            <div class="task">
+              <span class="task-number">2</span>
+              <p>Un trigger que envíe una alerta cuando el stock sea menor a 12 unidades.</p>
+            </div>
+            <div class="task">
+              <span class="task-number">3</span>
+              <p>Una función que calcule el tiempo restante de un contrato de mantenimiento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components-loader.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

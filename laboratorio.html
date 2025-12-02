@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratorio - Bases de Datos II</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700;800&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="background-animation">
+    <div class="grid-overlay"></div>
+    <div class="floating-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+      <span class="shape shape-4"></span>
+    </div>
+  </div>
+
+  <!-- Sección Práctica Interactiva -->
+  <section id="practica" class="hero-section">
+    <div class="hero-content">
+      <div class="section-header centered">
+        <span class="section-tag">Laboratorio</span>
+        <h2 class="section-title">Práctica Interactiva</h2>
+        <p class="section-subtitle">Prueba tus conocimientos con ejercicios prácticos</p>
+      </div>
+      <div class="practice-editor">
+        <div class="editor-header">
+          <div class="editor-tabs">
+            <button class="editor-tab active">SQL Editor</button>
+            <button class="editor-tab">Resultados</button>
+          </div>
+          <div class="editor-actions">
+            <button class="btn-run" id="runQuery">
+              <span>▶</span> Ejecutar
+            </button>
+            <button class="btn-clear" id="clearQuery">
+              Limpiar
+            </button>
+          </div>
+        </div>
+        <div class="editor-body">
+          <div class="editor-sidebar">
+            <h4>📋 Ejercicios</h4>
+            <div class="exercise-list">
+              <button class="exercise-item active" data-exercise="1">
+                <span class="ex-number">1</span>
+                <span class="ex-title">Crear Procedimiento</span>
+              </button>
+              <button class="exercise-item" data-exercise="2">
+                <span class="ex-number">2</span>
+                <span class="ex-title">Crear Trigger</span>
+              </button>
+              <button class="exercise-item" data-exercise="3">
+                <span class="ex-number">3</span>
+                <span class="ex-title">Optimizar Consulta</span>
+              </button>
+            </div>
+            <div class="exercise-description">
+              <h5>Ejercicio 1: Crear Procedimiento</h5>
+              <p>Crea un procedimiento que muestre los productos con stock menor a un valor dado como parámetro.</p>
+            </div>
+          </div>
+          <div class="editor-main">
+            <textarea id="sqlEditor" spellcheck="false">-- Escribe tu código SQL aquí
+CREATE PROCEDURE sp_ProductosBajoStock
+    @StockMinimo INT
+AS
+BEGIN
+    SELECT ProductoID, Nombre, Stock
+    FROM Productos
+    WHERE Stock < @StockMinimo
+    ORDER BY Stock ASC;
+END;</textarea>
+          </div>
+        </div>
+        <div class="editor-output" id="queryOutput">
+          <div class="output-placeholder">
+            <span class="output-icon">📊</span>
+            <p>Los resultados aparecerán aquí al ejecutar tu consulta</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components-loader.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
