@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <!-- Contenido de la Unidad 3 (extraído del archivo original) -->
+  <!-- UNIDAD 3: Optimización y Minería -->
   <section id="unidad3" class="hero-section">
     <div class="hero-content">
       <div class="unit-header">
@@ -172,73 +172,73 @@
           </div>
         </div>
       </div>
-      <!-- Tema 3.2: Minería de Datos -->
+      <!-- Tema 3.2: Minería de Datos en el Proceso KDD (CORREGIDO) -->
       <div class="content-block highlight">
         <div class="content-header">
           <h3 class="content-title">
             <span class="content-icon">💎</span>
-            Minería de Datos
+            Minería de Datos en el Proceso KDD
           </h3>
         </div>
         <div class="content-body">
           <div class="definition-card">
             <div class="definition-header">
               <span class="definition-icon">🔍</span>
-              <span class="definition-label">Definición</span>
+              <span class="definition-label">¿Qué es KDD?</span>
             </div>
-            <p>La <strong>minería de datos</strong> es el proceso de hallar anomalías, patrones y correlaciones en grandes conjuntos de datos para predecir resultados. Utiliza técnicas de estadística, inteligencia artificial y aprendizaje automático.</p>
+            <p>El <strong>Knowledge Discovery in Databases (KDD)</strong> es el proceso completo de descubrir conocimiento útil a partir de datos. La <strong>minería de datos</strong> es solo una etapa dentro de este proceso: la aplicación de algoritmos para detectar patrones.</p>
           </div>
           <div class="mining-process">
-            <h4>📊 Proceso de Minería de Datos</h4>
+            <h4>📊 Proceso KDD (Knowledge Discovery in Databases)</h4>
             <div class="process-flow">
               <div class="process-step">
                 <div class="step-number">1</div>
                 <div class="step-content">
                   <h5>Selección</h5>
-                  <p>Identificar fuentes de datos relevantes</p>
+                  <p>Identificar fuentes y subconjuntos de datos relevantes.</p>
                 </div>
               </div>
               <div class="process-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  <h5>Pre-procesamiento</h5>
-                  <p>Limpiar y preparar los datos</p>
+                  <h5>Preprocesamiento</h5>
+                  <p>Limpiar datos: manejar nulos, duplicados, errores.</p>
                 </div>
               </div>
               <div class="process-step">
                 <div class="step-number">3</div>
                 <div class="step-content">
                   <h5>Transformación</h5>
-                  <p>Normalizar y reducir dimensiones</p>
+                  <p>Normalizar, codificar y reducir dimensionalidad.</p>
                 </div>
               </div>
               <div class="process-step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                  <h5>Minería</h5>
-                  <p>Aplicar algoritmos de análisis</p>
+                  <h5><strong>Minería de Datos</strong></h5>
+                  <p>Aplicar algoritmos (clustering, reglas, predicción).</p>
                 </div>
               </div>
               <div class="process-step">
                 <div class="step-number">5</div>
                 <div class="step-content">
-                  <h5>Evaluación</h5>
-                  <p>Interpretar y validar resultados</p>
+                  <h5>Interpretación</h5>
+                  <p>Validar, visualizar y tomar decisiones con los patrones.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="modeling-types">
-            <h4>🎯 Tipos de Modelado</h4>
+            <h4>🎯 Técnicas Comunes en la Minería de Datos (Paso 4)</h4>
             <div class="model-grid">
               <div class="model-card descriptive">
                 <div class="model-header">
                   <span class="model-icon">📋</span>
-                  <h5>Modelado Descriptivo</h5>
+                  <h5>Descriptivo</h5>
                 </div>
-                <p>Descubre similitudes y agrupaciones en datos históricos.</p>
+                <p>Descubre estructuras ocultas en datos históricos.</p>
                 <ul>
-                  <li>Agrupación en clústeres</li>
+                  <li>Agrupación (clustering)</li>
                   <li>Detección de anomalías</li>
                   <li>Reglas de asociación</li>
                 </ul>
@@ -246,25 +246,25 @@
               <div class="model-card predictive">
                 <div class="model-header">
                   <span class="model-icon">🔮</span>
-                  <h5>Modelado Predictivo</h5>
+                  <h5>Predictivo</h5>
                 </div>
-                <p>Clasifica eventos futuros y calcula resultados probables.</p>
+                <p>Pronostica comportamientos futuros.</p>
                 <ul>
                   <li>Regresión</li>
-                  <li>Redes neurales</li>
                   <li>Árboles de decisión</li>
+                  <li>Redes neuronales</li>
                 </ul>
               </div>
               <div class="model-card prescriptive">
                 <div class="model-header">
                   <span class="model-icon">💡</span>
-                  <h5>Modelado Prescriptivo</h5>
+                  <h5>Prescriptivo</h5>
                 </div>
-                <p>Recomienda acciones basadas en análisis de restricciones.</p>
+                <p>Recomienda acciones óptimas.</p>
                 <ul>
-                  <li>Reglas qué pasaría si</li>
-                  <li>Optimización de marketing</li>
-                  <li>Simulación de escenarios</li>
+                  <li>Optimización</li>
+                  <li>Simulación</li>
+                  <li>Análisis "qué pasaría si"</li>
                 </ul>
               </div>
             </div>
@@ -282,8 +282,9 @@
               <div class="code-block">
                 <div class="code-header">
                   <span class="lang-badge">SQL - Análisis de Asociación</span>
+                  <button class="copy-btn" data-code="assoc1">📋 Copiar</button>
                 </div>
-                <pre><code><span class="comment">-- Encontrar productos comprados juntos frecuentemente</span>
+                <pre><code id="assoc1"><span class="comment">-- Encontrar productos comprados juntos frecuentemente</span>
 <span class="comment">-- (Market Basket Analysis)</span>
 <span class="keyword">WITH</span> ProductosPorVenta <span class="keyword">AS</span> (
     <span class="keyword">SELECT</span> 
@@ -387,6 +388,7 @@
   <div id="footer-placeholder"></div>
 
   <script src="js/components-loader.js"></script>
+  <script src="js/exampleCodeUnidad3.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

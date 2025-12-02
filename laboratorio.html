@@ -21,8 +21,8 @@
   </div>
 
   <!-- Sección Práctica Interactiva -->
-  <section id="practica" class="hero-section">
-    <div class="hero-content">
+  <section id="practica" class="practice-section">
+    <div class="section-container">
       <div class="section-header centered">
         <span class="section-tag">Laboratorio</span>
         <h2 class="section-title">Práctica Interactiva</h2>
@@ -31,8 +31,8 @@
       <div class="practice-editor">
         <div class="editor-header">
           <div class="editor-tabs">
-            <button class="editor-tab active">SQL Editor</button>
-            <button class="editor-tab">Resultados</button>
+            <button class="editor-tab active" data-view="editor">SQL Editor</button>
+            <button class="editor-tab" data-view="results">Resultados</button>
           </div>
           <div class="editor-actions">
             <button class="btn-run" id="runQuery">
@@ -61,8 +61,8 @@
               </button>
             </div>
             <div class="exercise-description">
-              <h5>Ejercicio 1: Crear Procedimiento</h5>
-              <p>Crea un procedimiento que muestre los productos con stock menor a un valor dado como parámetro.</p>
+              <h5 id="exercise-title">Ejercicio 1: Crear Procedimiento</h5>
+              <p id="exercise-desc">Crea un procedimiento que muestre los productos con stock menor a un valor dado como parámetro.</p>
             </div>
           </div>
           <div class="editor-main">
@@ -91,6 +91,6 @@ END;</textarea>
   <div id="footer-placeholder"></div>
 
   <script src="js/components-loader.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/practiceEditor.js"></script>
 </body>
 </html>
